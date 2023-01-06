@@ -1,33 +1,31 @@
+import Heading from "./components/Heading"
+import { Section } from "./components/Section"
+import Counter from "./components/Counter"
+
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import List from "./components/List"
 
 function App() {
-  const [count, setCount] = useState(0)
+  
+  const [count, setCount] = useState<number>(1)
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <>
+      <Heading title={"Hello"}/>
+      <Section title={"Different Title"}>
+        {/* Anything between tags will be considered children */}
+        This is my section!
+      </Section>
+
+      {/* Passing down setState & children instead of passing count itself  */}
+      <Counter setCount={setCount}>
+        Count is {count}
+      </Counter>
+      <List items={["Coffee","BBT","Code"]}
+            render={(item: string) => <span className="bold">{item}</span>}
+            // Could render anything we want with this anonymous fx(p,div,heading or anything we want to display the list items with) 
+      />
+    </>
   )
 }
 
